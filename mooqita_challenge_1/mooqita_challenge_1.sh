@@ -16,8 +16,8 @@ do
 	# Read the urandom special file, and transform to alpanumeric string, and print only 15
 	RAN_NUM_STR=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 15); echo $RAN_NUM_STR >> $FILE
 	
-	# Get file size
-	FILE_SIZE=$(wc -c $FILE); FILE_SIZE=${FILE_SIZE%[[:blank:]]$FILE}
+	FILE_SIZE=$(wc -c $FILE) # Get file size
+        FILE_SIZE=${FILE_SIZE%[[:blank:]]$FILE} # Extract the size part of "$(wc -c $FILE)"
 done
 
 #sort the file
@@ -28,8 +28,10 @@ sort -o $FILE $FILE
 grep -v "^[a|A].*" $FILE > $FILE2 
 
 # How many lines were removed? 
-NO_LINES_FILE=$(wc -l $FILE); NO_LINES_FILE=${NO_LINES_FILE%[[:blank:]]$FILE}
-NO_LINES_FILE2=$(wc -l $FILE2); NO_LINES_FILE2=${NO_LINES_FILE2%[[:blank:]]$FILE2}
+NO_LINES_FILE=$(wc -l $FILE) # Get number of lines 
+NO_LINES_FILE=${NO_LINES_FILE%[[:blank:]]$FILE}  # Extract the size part of "$(wc -l $FILE)"
+NO_LINES_FILE2=$(wc -l $FILE2) # Get the number of lines 
+NO_LINES_FILE2=${NO_LINES_FILE2%[[:blank:]]$FILE2}  # Extract the size part of "$(wc -l $FILE2)"
 
 echo "Number of lines removed: $(($NO_LINES_FILE - $NO_LINES_FILE2))"
 exit 0
