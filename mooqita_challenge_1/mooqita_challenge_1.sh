@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# check for two arguments, print a usage message if not supplied and exit
+# Check for two arguments, print a usage message if not supplied and exit
 [[ $# -ne 2 ]] && echo " Usage: Two file arguments needed" && exit 1
 
-MAX_SIZE=1048576 # max size of mooqita_challenge
-FILE_SIZE=0 # initial size of file 
-FILE=$1
-FILE2=$2
-
+FILE=$1 # First file to write the random numbers and strings to 
+FILE2=$2 # Second file without lines starting with 'a'
+MAX_SIZE=1048576 # Maximum allowable size of $FILE
+FILE_SIZE=0 # Initial size of $FILE 
 
 # Create a series of random numbers and strings of characters and write them to a file
 # While controlling the size of the file
