@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# check for two arguments, print a usage message if not supplied and exit
 [[ $# -ne 2 ]] && echo " Usage: Two file arguments needed" && exit 1
 
 MAX_SIZE=1048576 # max size of mooqita_challenge
