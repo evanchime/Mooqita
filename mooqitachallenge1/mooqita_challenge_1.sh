@@ -27,11 +27,10 @@ sort -o $FILE $FILE
 # Safe the result into a new file.
 grep -v "^[a|A].*" $FILE > $FILE2 
 
-# How many lines were removed? 
-NO_LINES_FILE=$(wc -l $FILE) # Get number of lines 
-NO_LINES_FILE=${NO_LINES_FILE%[[:blank:]]$FILE}  # Extract the size part of "$(wc -l $FILE)"
-NO_LINES_FILE2=$(wc -l $FILE2) # Get the number of lines 
-NO_LINES_FILE2=${NO_LINES_FILE2%[[:blank:]]$FILE2}  # Extract the size part of "$(wc -l $FILE2)"
+# How many lines were removed? Get number of lines 
+# To the reviewer, ignore solution description. Here cat reads files and pipes output to wc -l
+NO_LINES_FILE=$(cat $FILE | wc -l) 
+NO_LINES_FILE2=$(cat $FILE2 | wc -l)
 
 echo "Number of lines removed: $(($NO_LINES_FILE - $NO_LINES_FILE2))"
 exit 0
